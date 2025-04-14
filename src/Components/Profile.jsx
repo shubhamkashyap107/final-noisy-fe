@@ -76,7 +76,14 @@ const Profile = () => {
 
           <input
             value={DOB}
-            onChange={(e) => setDOB(e.target.value)}
+            onChange={(e) => {
+              const selectedDate = e.target.value;
+              if (selectedDate > finalDate) {
+                toast.error(`Date cannot be later than ${finalDate}`);
+                return;
+              }
+              setDOB(selectedDate);
+            }}
             type="date"
             max={finalDate}
             className="w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
