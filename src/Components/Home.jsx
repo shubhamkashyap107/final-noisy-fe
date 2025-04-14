@@ -33,7 +33,7 @@ const Home = () => {
     {
       getData()
     }
-  }, [])
+  }, [feedData])
 
 
   useEffect(() => {
