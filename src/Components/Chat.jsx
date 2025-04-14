@@ -9,7 +9,15 @@ import axios from 'axios';
 
 function connectToSocket()
 {
+  if(location.hostname == "localhost")
+  {
     return io(baseUrl)
+  }
+  else
+  {
+    return io("/", {path : "/api/socket.io"})
+  }
+
 }
 
 const Chat = () => {
