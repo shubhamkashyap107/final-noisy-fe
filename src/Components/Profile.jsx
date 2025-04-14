@@ -120,6 +120,12 @@ const Profile = () => {
 
           <button
             onClick={async () => {
+
+              if(image == "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
+              {
+                toast.error("Please Upload Your Image!!")
+                return
+              }
               if (!firstName || !lastName || !DOB || !image || !bio) {
                 toast.error("Please enter all the fields")
                 return
