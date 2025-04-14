@@ -28,10 +28,6 @@ const Profile = () => {
   const [DOB, setDOB] = useState(userSliceData.DOB || "")
   const [bio, setBio] = useState(userSliceData.bio || "")
 
-  useEffect(() => {
-    console.log("Profile UE Chala")
-  }, [])
-
   return (
     <>
       {userSliceData && (

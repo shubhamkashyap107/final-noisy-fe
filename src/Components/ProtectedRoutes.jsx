@@ -14,7 +14,7 @@ const ProtectedRoutes = () => {
     const nav = useNavigate()
     const userData = useSelector(store => store.user)
     const dispatch = useDispatch()
-    console.log("PR")
+    // console.log("PR")
 
 
     useEffect(() => {

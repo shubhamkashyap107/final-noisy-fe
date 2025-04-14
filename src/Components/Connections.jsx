@@ -43,7 +43,7 @@ const Connections = () => {
     }, [])
 
     useEffect(() => {
-      console.log("Connections wala UE")
+      // console.log("Connections wala UE")
         async function getData()
         {
            if(selectValue == "my-connections")
@@ -51,13 +51,13 @@ const Connections = () => {
                 let res = await axios.get(baseUrl + "/user/connections", {withCredentials : true})
                 setFriends(res.data)
                 dispatch(addConnections(res.data))
-                console.log(res.data)
+                // console.log(res.data)
            }
            else
            {
                 let res = await axios.get(baseUrl + "/user/connection-requests", {withCredentials : true})
                 setRequests(res.data)
-                console.log(res.data)
+                // console.log(res.data)
 
            }
         }

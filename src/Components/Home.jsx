@@ -13,7 +13,7 @@ const Home = () => {
   const navigate = useNavigate()
   const userData = useSelector(store => store.user)
   const[feedData, setFeedData] = useState([])
-  console.log(feedData)
+  // console.log(feedData)
   const[isDbEmpty, setIsDbEmpty] = useState(false)
   let limit = 3
 
@@ -27,7 +27,7 @@ const Home = () => {
       {
         setIsDbEmpty(true)
       }
-      console.log(res.data)
+      // console.log(res.data)
     }
     if(feedData.length == 0)
     {
@@ -53,7 +53,7 @@ const Home = () => {
     
 
       const intervalID = setInterval(() => {
-        console.log("API Called")
+        // console.log("API Called")
         async function getData() {
      
           let res = await axios.get(baseUrl + `/user?limit=${limit}`, {withCredentials : true})
@@ -62,7 +62,7 @@ const Home = () => {
           {
             setIsDbEmpty(true)
           }
-          console.log(res.data)
+          // console.log(res.data)
         }
         if(feedData.length == 0)
         {

@@ -46,7 +46,7 @@ const Auth = () => {
                         return
                     }
                     let res = await axios.post(baseUrl + "/auth/signup", {username, password, emailId}, {withCredentials : true})
-                    console.log(res)
+                    // console.log(res)
                     dispatch(addUser(res.data.data))
                     navigate("/profile/edit")
                 }
