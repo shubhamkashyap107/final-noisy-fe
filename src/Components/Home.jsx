@@ -19,6 +19,11 @@ const Home = () => {
 
 
   useEffect(() => {
+    if(isDbEmpty)
+      {
+        return
+      }
+    
     async function getData() {
      
       let res = await axios.get(baseUrl + `/user?limit=${limit}`, {withCredentials : true})
