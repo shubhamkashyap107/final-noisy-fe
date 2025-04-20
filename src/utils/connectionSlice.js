@@ -6,10 +6,13 @@ const connectionSLice = createSlice({
     reducers : {
         addConnections : (state, action) => {
             return action.payload
+        },
+        removeConnections : (state, action) => {
+            return []
         }
     }
 })
 
 
 export default connectionSLice.reducer
-export const{addConnections} = connectionSLice.actions
+export const{addConnections, removeConnections} = connectionSLice.actions

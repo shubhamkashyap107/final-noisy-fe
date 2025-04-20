@@ -9,6 +9,7 @@ import ProtectedRoutes from './Components/ProtectedRoutes';
 import Connections from './Components/Connections';
 import Chat from './Components/Chat';
 import EditPassword from './Components/EditPassword';
+import NewAuth from './Components/NewAuth';
 
 
 
@@ -18,7 +19,7 @@ const App = () => {
     <div>
       <Toaster />
       <Routes>
-          <Route path='/auth' element={<Auth />} />
+          <Route path='/auth' element={<NewAuth />} />
 
     
           <Route path='/' element={<ProtectedRoutes />}>

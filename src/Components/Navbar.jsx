@@ -5,6 +5,7 @@ import axios from 'axios'
 import { baseUrl } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUser } from '../utils/userSlice'
+import { removeConnections } from '../utils/connectionSlice'
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false)
@@ -16,6 +17,7 @@ const Navbar = () => {
     try {
       await axios.get(baseUrl + "/auth/logout", { withCredentials: true })
       dispatch(removeUser())
+      dispatch(removeConnections())
       navigate("/auth")
     } catch (error) {
       console.error("Logout failed:", error)
