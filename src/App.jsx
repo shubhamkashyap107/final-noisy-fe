@@ -10,6 +10,7 @@ import Connections from './Components/Connections';
 import Chat from './Components/Chat';
 import EditPassword from './Components/EditPassword';
 import NewAuth from './Components/NewAuth';
+import Error from './Components/Error';
 
 
 
@@ -33,6 +34,8 @@ const App = () => {
 
         
           </Route>
+
+          <Route path='*' element={<Error />} />
    
       </Routes>
     </div>
