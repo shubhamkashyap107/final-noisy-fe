@@ -82,14 +82,14 @@ const Home = () => {
   }, [feedData])
 
   return !feedData.length ? (
-    <div className="flex items-center justify-center h-[80vh]">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="text-center">
         <h1 className="text-2xl font-semibold text-gray-600"> No Users Found</h1>
         <p className="text-sm text-gray-500 mt-2">Try again later</p>
       </div>
     </div>
   ) : (
-    <div>
+    <div className='min-h-screen '>
       {feedData.length && (
         <DisplayCard
           feedData={feedData}

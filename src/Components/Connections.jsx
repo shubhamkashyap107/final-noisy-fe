@@ -65,7 +65,7 @@ const Connections = () => {
     }, [selectValue])
 
 return (
-    <div className="flex flex-col items-center w-full p-4">
+    <div className="flex flex-col items-center w-full p-4 min-h-screen">
       <select
         onChange={(e) => setSelectValue(e.target.value)}
         className="mb-4 p-2 border rounded-lg text-lg"
