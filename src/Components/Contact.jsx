@@ -5,7 +5,7 @@ const ContactUs = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-4xl mx-auto px-4 py-12 text-gray-800">
+      <div className="max-w-4xl mx-auto px-4 py-12 text-gray-800 min-h-screen">
         <h1 className="text-4xl font-bold text-pink-600 mb-6">Contact Us</h1>
         <p className="text-sm text-gray-500 mb-8">Effective Date: <span className="italic">12/5/25</span></p>
 
