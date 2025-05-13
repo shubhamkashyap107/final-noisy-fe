@@ -300,11 +300,17 @@ const NewAuth = () => {
                   <button
                     onClick={() => {
                       const login = async () => {
+                        try {
                         const res = await axios.post(baseUrl + "/auth/login", { username, password }, { withCredentials: true });
                         if (res.status === 200) {
                           dispatch(addUser(res.data.data));
                           navigate("/home");
                         }
+                        } catch (error) {
+                          toast.error(error.response.data.error)
+                        }
+    
+                
                       };
                       login();
                     }}
