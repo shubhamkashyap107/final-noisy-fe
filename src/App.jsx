@@ -17,6 +17,7 @@ import Terms from './Components/Terms';
 import RefundPolicy from './Components/Refund';
 import Team from './Components/Team';
 import ContactUs from './Components/Contact';
+import Shipping from './Components/Shipping';
 
 
 
@@ -42,9 +43,10 @@ const App = () => {
           </Route>
           <Route path='/privacy-policy' element={<Privacy />} />
           <Route path='/terms' element={<Terms />} />
-          <Route path='/refund-policy' element={<RefundPolicy />} />
+          <Route path='/cancellation-refund-policy' element={<RefundPolicy />} />
           <Route path='/team' element={<Team />} />
           <Route path='/contact' element={<ContactUs />} />
+          <Route path='/shipping-delivery' element={<Shipping />} />
           <Route path='*' element={<Error />} />
    
       </Routes>

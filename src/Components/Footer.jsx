@@ -9,9 +9,10 @@ const Footer = () => {
         <div className="flex flex-wrap justify-center gap-4 text-sm mb-2">
           <Link to="/privacy-policy" className="hover:underline text-gray-300">Privacy Policy</Link>
           <Link to="/terms" className="hover:underline text-gray-300">Terms Of Service</Link>
-          <Link to="/refund-policy" className="hover:underline text-gray-300">Refund Policy</Link>
+          <Link to="/cancellation-refund-policy" className="hover:underline text-gray-300">Cancellation & Refund</Link>
           <Link to="/team" className="hover:underline text-gray-300">Team</Link>
           <Link to="/contact" className="hover:underline text-gray-300">Contact Us</Link>
+          <Link to="/shipping-delivery" className="hover:underline text-gray-300">Shipping & Delivery</Link>
         </div>
 
         {/* Bottom row with © and Contact */}
