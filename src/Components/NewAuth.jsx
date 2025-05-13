@@ -6,6 +6,7 @@ import axios from 'axios'
 import { baseUrl } from '../utils/constants'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import validator from "validator"
 
 const NewAuth = () => {
   const [isSignupPage, setIsSignupPage] = useState(false)
@@ -128,18 +129,27 @@ const NewAuth = () => {
       
                       <button
                         onClick={() => {
-                          setDisableInput(true);
+                          if(!validator.isEmail(emailId))
+                          {
+                            toast.error("Please enter a valid email")
+                            return
+                          }
+                          
                           const getOTP = async () => {
                             try {
                               const resPromise = axios.get(`${baseUrl}/auth/verify-mail/${emailId}`);
                               toast.promise(resPromise, {
+
                                 loading: 'Sending OTP...',
-                                success: () => `OTP Sent to ${emailId}`,
-                                error: 'Failed to send OTP',
+                                success: () => {
+                                  `OTP Sent to ${emailId}`
+                                      setDisableInput(true);
+                                    },
+                                error: "User already exists",
                               });
                               await resPromise;
                             } catch (err) {
-                              console.error(err);
+                              // console.error(err);
                             }
                           };
                           getOTP();
@@ -219,25 +229,27 @@ const NewAuth = () => {
       
                       {/* Signup Button */}
                       <button
-                        onClick={() => {
-                          async function signUpUser() {
-                            const res = await axios.post(
-                              `${baseUrl}/auth/signup`,
-                              { emailId, username, password },
-                              { withCredentials: true }
-                            );
-                            console.log(res);
-                            if (res.status === 200) {
-                              dispatch(addUser(res.data.data));
-                              navigate("/profile/edit");
-                            }
+                      onClick={async () => {
+                        try {
+                          const res = await axios.post(
+                            `${baseUrl}/auth/signup`,
+                            { emailId, username, password },
+                            { withCredentials: true }
+                          );
+                          console.log(res);
+                          if (res.status === 200) {
+                            dispatch(addUser(res.data.data));
+                            navigate("/profile/edit");
                           }
-                          signUpUser();
-                        }}
-                        className="w-full bg-green-600 text-white py-3 rounded-lg text-base font-medium hover:bg-green-700 transition"
-                      >
-                        Sign Up
-                      </button>
+                        } catch (error) {
+                          toast.error("User already exists, please try a different username");
+                        }
+                      }}
+                      className="w-full bg-green-600 text-white py-3 rounded-lg text-base font-medium hover:bg-green-700 transition"
+                    >
+                      Sign Up
+                    </button>
+
                     </>
                   )}
                 </div>

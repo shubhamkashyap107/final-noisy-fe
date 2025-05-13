@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import axios from 'axios';
-import { baseUrl, promptAI } from '../utils/constants';
+import { baseUrl } from '../utils/constants';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: "AIzaSyD_P1qqLOdoUJZeJkQeEERW7_X6awegOCE" });
 
 const Profile = () => {
   const date = new Date()
@@ -98,19 +96,19 @@ const Profile = () => {
 
           <div className="text-right">
             <button
-              onClick={async () => {
-                if (bio.length < 20) {
-                  toast.error("Please enter atleast 20 characters")
-                  return
+              onClick={() => {
+                async function getBio() {
+                  const res = axios.post(baseUrl + "/profile/generate-bio", {interests : bio}, {withCredentials : true})
+                  toast.promise(res, {
+                    loading : "Generating Bio",
+                    success : (res) => {
+                      setBio(res.data.bio)
+                      return "Bio Generated Successfully"
+                    },
+                    error : "Error Generating Bio"
+                  })
                 }
-                async function getAIRes() {
-                  const response = await ai.models.generateContent({
-                    model: "gemini-2.0-flash",
-                    contents: promptAI + bio,
-                  });
-                  setBio(response.text)
-                }
-                getAIRes()
+                getBio()
               }}
               className="text-sm text-blue-500 hover:text-blue-700 transition duration-200"
             >
@@ -120,13 +118,14 @@ const Profile = () => {
 
           <button
             onClick={async () => {
-
+              try {
+                
               if(image == "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png")
               {
                 toast.error("Please Upload Your Image!!")
                 return
               }
-              if (!firstName || !lastName || !DOB || !image || !bio) {
+              if (!firstName || !lastName || !DOB || !image || !bio ) {
                 toast.error("Please enter all the fields")
                 return
               }
@@ -137,6 +136,10 @@ const Profile = () => {
                 navigate("/profile")
               } else {
                 toast.error("Please Enter valid data")
+              }
+              } catch (error) {
+                console.log(error.response.data.error)
+                toast.error(error.response.data.error)
               }
             }}
             className="w-full px-4 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition duration-300"

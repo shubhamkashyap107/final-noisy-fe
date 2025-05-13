@@ -11,11 +11,17 @@ import Chat from './Components/Chat';
 import EditPassword from './Components/EditPassword';
 import NewAuth from './Components/NewAuth';
 import Error from './Components/Error';
+import Footer from './Components/Footer';
+import Privacy from './Components/Privacy';
+import Terms from './Components/Terms';
+import RefundPolicy from './Components/Refund';
+import Team from './Components/Team';
+import ContactUs from './Components/Contact';
 
 
 
 const App = () => {
-  // console.log(location.hostname)
+
   return (
     <div>
       <Toaster />
@@ -34,10 +40,15 @@ const App = () => {
 
         
           </Route>
-
+          <Route path='/privacy-policy' element={<Privacy />} />
+          <Route path='/terms' element={<Terms />} />
+          <Route path='/refund-policy' element={<RefundPolicy />} />
+          <Route path='/team' element={<Team />} />
+          <Route path='/contact' element={<ContactUs />} />
           <Route path='*' element={<Error />} />
    
       </Routes>
+      <Footer />
     </div>
   )
 }
